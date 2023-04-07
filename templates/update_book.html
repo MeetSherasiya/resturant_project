@@ -1,0 +1,103 @@
+{% extends "dashboard.html" %}
+{% block temp %}<a href="/admin/dashboard/"><i class="material-icons opacity-10">arrow_back</i></a> Booking Changes {% endblock temp %}
+{% block additem %}{% endblock additem %}
+{% block topbody %}
+<body>
+    {% load crispy_forms_tags %}
+    <form method="post" action="">
+    {% csrf_token %}
+        <div class="box ms-3 mb-1">
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        {{form.book_name|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.book_email|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.book_phone|as_crispy_field}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        {{form.book_date|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.book_time|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.people|as_crispy_field}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        {{form.description|as_crispy_field}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        <input type="submit" name="Submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+{% endblock topbody %}
+
+
+
+
+{% comment %} {{form.as_p}}
+<input type="submit" name="Submit"> {% endcomment %}
+
+{% comment %} <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+    <button type="button" class="btn-close text-dark opacity-10" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="input-group input-group-outline">
+        <label for="No." class="form-label" style="margin-left:-10px;">No.:</label>
+        <input type="text" class="form-control mt-5" id="No." value="{{forloop.counter}}" disabled>
+        </div>
+        <div class="input-group input-group-outline">
+        <label for="fullname" class="form-label" style="margin-left:-10px;">Full Name:</label>
+        <input type="text" class="form-control mt-5" id="fullname" value="{{obj.book_name}}">
+        </div>
+    <div class="input-group input-group-outline">
+        <label for="email" class="form-label" style="margin-left:-10px;">Email:</label>
+        <input type="email" class="form-control mt-5" id="email" value="{{obj.book_email}}">
+    </div>
+    <div class="input-group input-group-outline">
+        <label for="phone" class="form-label" style="margin-left:-10px;">Phone:</label>
+        <input type="number" class="form-control mt-5" id="phone" value="{{obj.book_phone}}">
+    </div>
+    <div class="input-group input-group-outline">
+        <label for="date" class="form-label" style="margin-left:-10px;">Date:</label>
+        <input type="date" class="form-control mt-5" id="date" value="{{obj.book_date}}">
+    </div>
+    <div class="input-group input-group-outline">
+        <label for="time" class="form-label" style="margin-left:-10px;">Time:</label>
+        <input type="time" class="form-control mt-5" id="time" value="{{obj.book_time}}">
+    </div>
+    <div class="input-group input-group-outline ms-md-auto pe-md-3 d-flex align-items-center">
+        <label for="people" class="form-label" style="margin-left:-10px;">People:</label>
+        <input type="number" class="form-control mt-5" id="people" value="{{obj.people}}">
+    </div>
+    <div class="input-group input-group-outline ms-md-auto pe-md-3 d-flex align-items-center">
+        <label for="desc" class="form-label" style="margin-left:-10px;">Description:</label>
+        <textarea class="form-control mt-5" name="message" rows="3" id="desc" placeholder="Message">{{obj.description}}</textarea>
+    </div>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary"><a href="/admin/dashboard">Save changes</a></button>
+    </div>
+</div> {% endcomment %}

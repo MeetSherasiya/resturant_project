@@ -1,0 +1,106 @@
+{% extends "dashboard.html" %}
+
+{% block navactivate %}
+<a class="nav-link text-white" href="/admin/dashboard/">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">table_bar</i>
+    </div>
+    <span class="nav-link-text ms-1">Booking</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link text-white " href="/admin/menu/">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">menu_book</i>
+    </div>
+    <span class="nav-link-text ms-1">Menu</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link text-white active bg-gradient-primary" href="/admin/contact/">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+{% endblock navactivate %}
+
+{% block additem %}
+{% endblock additem %}
+
+{% block temp %} Contact Us {% endblock temp %}
+
+{% block topbody %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Contact Us</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Message</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for obj in objs %}
+                  <tr>
+                    <td class="align-middle text-center"><p class="text-xs font-weight-bold mb-0">{{forloop.counter}}</p></td>
+                    <td><p class="text-xs font-weight-bold mb-0">{{obj.contact_name}}</p></td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{obj.contact_email}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{obj.contact_number}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                        <p class="text-xs font-weight-bold mb-0">{{obj.contact_subject}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                        <p class="text-xs font-weight-bold mb-0">{{obj.contact_message}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" href="{% url 'deletecontact' obj.id %}" data-bs-toggle="modal" data-bs-target="#mydelete{{obj.id}}" value="Delete"><i class="material-icons text-sm me-2">delete</i>Delete</button>
+                      <div class="modal" id="mydelete{{obj.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title">Booking Details: {{obj.contact_name}}</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true"></span>
+                                  </button>
+                              </div>
+                              <div class="modal-body">
+                                  <p style="text-align:initial;">Are you sure you want to delete this contact?</p>
+                              </div>
+                              <div class="modal-footer">
+                                  <form action="{% url 'deletecontact' obj.id %}" method="POST">
+                                      {% csrf_token %}
+                                      <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
+                                      <input type="submit" class="btn btn-primary" value="Delete">
+                                  </form>
+                              </div>
+                              </div>
+                          </div>
+                      </div>                      <a class="btn btn-link text-dark px-3 mb-0" href="{% url 'updatecontact' obj.id %}"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock topbody %}

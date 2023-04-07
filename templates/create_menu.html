@@ -1,0 +1,63 @@
+{% extends "dashboard.html" %}
+{% block temp %}<a href="/admin/menu/"><i class="material-icons opacity-10">arrow_back</i></a> Add New Item {% endblock temp %}
+{% block additem %}{% endblock additem %}
+{% block navactivate %}
+<a class="nav-link text-white" href="/admin/dashboard/">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">table_bar</i>
+    </div>
+    <span class="nav-link-text ms-1">Booking</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link text-white active bg-gradient-primary" href="/admin/menu/">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="material-icons opacity-10">menu_book</i>
+    </div>
+    <span class="nav-link-text ms-1">Menu</span>
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link text-white " href="/admin/contact/">
+    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+{% endblock navactivate %}
+{% block topbody %}
+<body>
+    {% load crispy_forms_tags %}
+    <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="box ms-3">
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        {{form.item_name|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.category|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.des_price|as_crispy_field}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        {{form.description|as_crispy_field}}
+                    </div>
+                    <div class="p-2 ms-2">
+                        {{form.image|as_crispy_field}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-outline d-flex flex-row col-6-lg">
+                    <div class="p-2 ms-2">
+                        <input type="submit" name="Submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+{% endblock topbody %}
